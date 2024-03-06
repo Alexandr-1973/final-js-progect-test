@@ -128,17 +128,21 @@ if (queryLocalStorage() && queryLocalStorage().length > 0) {
 
 let idArray = [];
 let firstArray = [];
-const res = await axios.get(
-  'https://books-backend.p.goit.global/books/top-books'
-);
-firstArray = res.data;
-// console.log(firstArray);
 
-for (let y = 0; y <= 5; y += 1) {
-  for (let i = 0; i <= 4; i += 1) {
-    idArray.push(firstArray[y].books[i]._id);
+async function getBooks() {
+  const res = await axios.get(
+    'https://books-backend.p.goit.global/books/top-books'
+  );
+  firstArray = res.data;
+  // console.log(firstArray);
+
+  for (let y = 0; y <= 5; y += 1) {
+    for (let i = 0; i <= 4; i += 1) {
+      idArray.push(firstArray[y].books[i]._id);
+    }
   }
-}
+};
+getBooks()
 // console.log(idArray);
 
 let inLocalStorage = [];
